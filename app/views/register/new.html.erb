@@ -1,6 +1,13 @@
             <%= render partial: "shared/header"%>
 
             <%= form_with model: @blogger, url: register_path do |form|%>
+            <% if @blogger.errors.any?%>
+            <div class="alert alert-danger">
+            <% @blogger.errors.full_messages.each do |message|%> 
+            <div><%= message %></div>
+            <% end %>
+            </div>
+            <% end %>
                     <div class="row mb-3">
                     <div class="col-md-6">
                         <div class="form-floating mb-3 mb-md-0">

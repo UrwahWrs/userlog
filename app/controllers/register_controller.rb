@@ -5,6 +5,7 @@ class RegisterController < ApplicationController
    def create
     @blogger=Blogger.new(blogger_params)
     if @blogger.save
+        session[:useer_id]=@user.id
         redirect_to root_path, notice: "Account ceated successfully!"
     else
         render :new, status: :unprocessable_entity
@@ -14,6 +15,6 @@ class RegisterController < ApplicationController
    private
 
    def blogger_params
-        params.require(:blogger).permit(:first_name, :last_name, :email)
+        params.require(:blogger).permit(:first_name, :last_name, :email, :password, :password_confirmation)
    end
 end
