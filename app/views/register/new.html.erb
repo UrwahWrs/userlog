@@ -1,0 +1,54 @@
+            <%= render partial: "shared/header"%>
+
+            <%= form_with model: @blogger, url: register_path do |form|%>
+                    <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3 mb-md-0">
+                            <%= form.text_field :first_name, class: "form-control", id: "inputFirstName", type: "text", placeholder: "Enter your first name" %>
+                            <%= form.label :first_name %>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating">
+                            <%= form.text_field :last_name, class: "form-control", id: "inputLastName", type: "text", placeholder: "Enter your last name" %>
+                            <%= form.label :last_name %>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-floating mb-3">
+                    <%=form.text_field :email, class: "form-control", id: "inputEmail", type:"email", placeholder: "name@example.com" %>
+                    <%= form.label :email %>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3 mb-md-0">
+                            <%= form.password_field :password, class:"form-control", id:"inputPassword", type: "password", placeholder: "Create a password" %>
+                            <%= form.label :password %>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3 mb-md-0">
+                            <%= form.password_field :confirm_password, class:"form-control", id:"inputPasswordConfirm", type: "password", placeholder:"Confirm password" %>
+                            <%= form.label :confirm_password %>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4 mb-0">
+                    <div class="d-grid">
+                    <%= form.submit "Create Account", class: "btn btn-primary btn-block"%>
+                    </div>
+                </div>
+
+
+            <%end%>                      
+                                    </div>
+                                    <div class="card-footer text-center py-3">
+                                        <div class="small"><a href="/">Have an account? Go to login</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+           <%= render partial: "shared/footer"%>
