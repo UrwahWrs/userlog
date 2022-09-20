@@ -5,8 +5,8 @@ class RegisterController < ApplicationController
    def create
     @blogger=Blogger.new(blogger_params)
     if @blogger.save
-        session[:useer_id]=@user.id
-        redirect_to root_path, notice: "Account ceated successfully!"
+        session[:blogger_id]=@blogger.id
+        redirect_to root_path, notice: "Account has been created successfully!"
     else
         render :new, status: :unprocessable_entity
      end
