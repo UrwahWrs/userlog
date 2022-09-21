@@ -6,11 +6,12 @@
   <div class="container-fluid">
   <div class="col-md-6">
 
+    
+    <div class="collapse navbar-collapse" id="navbarNav">
     <%= link_to "Navbar", root_path, class: "navbar-brand" %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
           <%= link_to "Home", root_path, class: "nav-link active" %>
@@ -28,17 +29,17 @@
     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
        <% if Current.blogger %>
         <li class="nav-item">
-         <%= Current.user.email%>
+         <%= link_to Current.blogger.email, resetpassword_path, class: "nav-link"%>
         </li>
         <li class="nav-item">
-         <%= button_to "logout", logout_path, method: :delete %>
+         <%= button_to "logout", logout_path, method: :delete, class: "nav-link" %>
         </li>
       <% else %>
         <li class="nav-item">
-         <% link_to "Sign Up", register_path %>
+         <% link_to "Sign Up", register_path, class: "nav-link" %>
        </li>
        <li class="nav-item">
-        <% link_to "Login", userlogin_path %>
+        <% link_to "Login", userlogin_path, class: "nav-link" %>
       </li>
     
   <% end %>

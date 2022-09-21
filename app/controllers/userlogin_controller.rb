@@ -7,7 +7,7 @@ class UserloginController < ApplicationController
         blogger = Blogger.find_by(email: params[:email])
         if blogger.present? && blogger.authenticate(params[:password])
             session[:blogger_id]=blogger.id
-            redirect_to dashboard_path, notice: "logged in!"
+            redirect_to root_path, notice: "logged in!"
         else
             flash[:alert]= "Invalid Email or Password"
             render :new, status: :unprocessable_entity

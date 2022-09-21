@@ -22,8 +22,8 @@ class HomeController < ApplicationController
       end
     
       def create
-        @blog= Blog.new(blog_params)
-    
+        @blogger = Blogger.find(params[:blogger_id])
+        @blog = @blogger.Blog.create(blog_params)
         if @blog.save
           redirect_to @blog, notice: "Blog post added successfully!"
         else
@@ -44,15 +44,19 @@ class HomeController < ApplicationController
           render :edit, status: :unprocessable_entity
         end
       end
+      
       def destroy
-        @blog = Blog.find(params[:id])
+        @Blog = Blogger.find(params[:blogger_id])
+        @blog = @blogger.comments.find(params[:id])
         @blog.destroy
-    
-        redirect_to root_path, status: :see_other
+        redirect_to @blog, status: :see_other
       end
+     
       private
       def blog_params
-        params.require(:blog).permit(:title, :image, :body, :status)
+        params.require(:blog).permit(:title, :image, :description, :category)
       end
     
 end
+
+

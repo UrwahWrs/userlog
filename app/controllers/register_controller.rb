@@ -1,7 +1,9 @@
 class RegisterController < ApplicationController
+    
     def new
         @blogger=Blogger.new
     end
+
    def create
     @blogger=Blogger.new(blogger_params)
     if @blogger.save
