@@ -1,6 +1,2 @@
 <%= render partial: "shared/navbar"%>
 
-<% if Current.blogger %>
- Logged in as: <%= Current.blogger.email%>
- <%= button_to "logout", logout_path, method: :delete %>
- <% end %>
