@@ -1,0 +1,43 @@
+ <%= form_with model: blogpost  do |form|%>
+            
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3 mb-md-0">
+                            <%= form.text_field :title, class: "form-control", type: "text", placeholder: "Enter the title of the post" %>
+                            <%= form.label :title %>
+                        </div>
+                    </div>
+                </div>
+                <div  aria-label="Default select example" >
+                <%= form.select :category, raw("<option>Category</option><option>Animals</option><option>Traveller</option><option>Books</option>"), class: 'form_input', id: 'unique_id' %>
+                </div>
+                <div>
+                <%= form.file_field :image%>
+                </div>
+                <div class="form-floating mb-3">
+                    <%=form.text_area :description, class: "form-control", type:"text", placeholder: "description" %>
+                    <%= form.label :description %>
+                </div>
+                <div class="form-floating mb-3">
+                    <%=form.select :status, raw("<option>private</option><option>public</option>"), class: 'form_input', id: 'unique_id' %>
+                    <%= form.label :status %>
+                </div>
+                
+                <div class="mt-4 mb-0">
+                    <div class="d-grid">
+                    <%= form.submit "Save Post", class: "btn btn-primary btn-block"%>
+                    </div>
+                </div>
+
+
+            <%end%>                      
+                                    </div>
+                                    <div class="card-footer text-center py-3">
+                                        <div class="small"><a href="/">Go Back</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>

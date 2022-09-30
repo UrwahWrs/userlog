@@ -1,0 +1,3 @@
+module BlogpostsHelper
+
+end

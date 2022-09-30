@@ -1,0 +1,102 @@
+<%= render partial: "shared/navbar"%>
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
+    <!-- MDB -->
+<style>
+      #intro {
+        /* Margin to fix overlapping fixed navbar */
+        margin-top: 58px;
+      }
+      @media (max-width: 991px) {
+        #intro {
+          /* Margin to fix overlapping fixed navbar */
+          margin-top: 45px;
+        }
+      }
+</style>
+
+
+  
+<section class="text-center">
+ <h4 class="mb-5"><strong>Latest posts</strong></h4>
+<% @blogposts.reverse_each do |post| %>
+  <% if post.blogger==Current.blogger%>
+  <div class="row">
+    <div class="col-lg-4 col-md-12 mb-4">
+            
+    </div>
+
+    <div class="col-lg-4 col-md-6 mb-4">
+      <div class="card">
+        <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+            <%if post.image.attached?%>
+              <img class="img-fluid" src="<%= url_for(post.image)%>" />
+              <%end%>
+          <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);">
+
+          </div>
+             
+              
+        </div>
+
+        <div class="card-body">
+          <h4 class="card-title"><%= post.title%></h4>
+          <h6 class="card-title">Category : <%= post.category%></h6>
+          <p class="card-text">
+            <%= post.description%>
+          </p>
+
+          <div>
+            
+              <h6 class="card-subtitle mb-2 text-muted"> <%= post.created_at%> </h6>
+           
+            <h6 class="card-subtitle mb-2 text-muted"> Posted by : <%= post.blogger.first_name+" "+post.blogger.last_name%> </h6>
+          
+          </div>
+
+          <%= link_to "Edit", edit_blogpost_path(post) , class: "btn btn-primary"%>
+          <%= link_to "Delete", blogpost_path(post), class: "btn btn-primary", data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %> 
+          <%= link_to "Publish", edit_blogpost_path(post) , class: "btn btn-primary"%>
+               
+          
+        </div>
+        
+      </div>
+          <div class="card" style="width: 32.75rem;">
+  <div class="card-header">
+    Comments
+  </div>
+  <ul class="list-group list-group-flush">
+    <% post.comments.each do |comment| %>
+    
+      <li class="list-group-item"><%=Current.blogger.first_name+Current.blogger.last_name+"  "+comment.body%><li> 
+
+    <% end %>
+
+  </ul>
+</div>
+          <%= render partial: 'comments/form', locals: {post: post} %>
+
+    </div>
+          
+    <div class="col-lg-4 col-md-12 mb-4">
+            
+    </div>
+
+</div>
+<% end %>
+<% end%>
+
+</section>
+<%= render "shared/footer"%>
+
+
+
+
+
+

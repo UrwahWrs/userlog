@@ -6,7 +6,7 @@ class RegisterController < ApplicationController
 
    def create
     @blogger=Blogger.new(blogger_params)
-    if @blogger.save
+    if @blogger.save!
         session[:blogger_id]=@blogger.id
         redirect_to root_path, notice: "Account has been created successfully!"
     else

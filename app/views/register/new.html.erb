@@ -1,5 +1,6 @@
             <%= render partial: "shared/header"%>
-
+<div class="card-header"><h3 class="text-center font-weight-light my-4">Create Account</h3></div>
+                                    <div class="card-body">
             <%= form_with model: @blogger, url: register_path do |form|%>
             <% if @blogger.errors.any?%>
             <div class="alert alert-danger">

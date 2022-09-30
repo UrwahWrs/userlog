@@ -1,0 +1,21 @@
+  <%= form_with url: blogpost_comments_path(post.id), method: :post do |form| %>
+  <%= form.hidden_field :blogpost_id, value: post.id %>
+  <p>
+   <div class="mb-3 row">
+    <label class="col-sm-2 col-form-label">Comment</label>
+    <div class="col-sm-10">
+     <%= form.text_area "comment[body]",  class: "form-control" %>
+    </div>
+  </div>
+    
+  </p>
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <div class="d-grid">
+  
+      <%= form.submit "Post Comment", class: "btn btn-secondary"%>
+    </div>
+  </div>
+
+
+
+<% end %>

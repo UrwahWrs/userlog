@@ -8,7 +8,7 @@
 
     
     <div class="collapse navbar-collapse" id="navbarNav">
-    <%= link_to "Navbar", root_path, class: "navbar-brand" %>
+    <%= link_to "BLOGS", root_path, class: "navbar-brand" %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -16,9 +16,17 @@
         <li class="nav-item">
           <%= link_to "Home", root_path, class: "nav-link active" %>
         </li>
+        <% unless Current.blogger.nil?%>
         <li class="nav-item">
-          <%= link_to "Categories", root_path, class:"nav-link" %>
+          <%= link_to "New Post",  new_blogpost_path, class:"nav-link" %>
         </li>
+      
+        <% end %>
+        <form action="<%= blogposts_path %>" class="d-flex" role="search">
+        <input class="form-control me-2" type="search" name="search_key" placeholder="Search Blog" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+
         
       </ul>
     </div>
@@ -36,11 +44,12 @@
         </li>
       <% else %>
         <li class="nav-item">
-         <% link_to "Sign Up", register_path, class: "nav-link" %>
+         <%= link_to "Sign Up", register_path, class: "nav-link" %>
        </li>
        <li class="nav-item">
-        <% link_to "Login", userlogin_path, class: "nav-link" %>
+        <%= link_to "Login", userlogin_path, class: "nav-link" %>
       </li>
+       
     
   <% end %>
   </ul>
