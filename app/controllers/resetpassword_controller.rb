@@ -5,7 +5,7 @@ class ResetpasswordController < ApplicationController
     end
     def update
         Current.blogger.update(password_params)
-        redirect_to root_path, notice: "password updated!"
+        redirect_to blogposts_path, notice: "password updated!"
     end
 
     private

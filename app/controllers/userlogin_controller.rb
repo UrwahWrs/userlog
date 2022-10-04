@@ -16,7 +16,7 @@ class UserloginController < ApplicationController
     end
     def destroy
         session[:blogger_id]= nil 
-        redirect_to blogposts_path, notice: "logged out!"
+        redirect_to root_path, notice: "logged out!"
 
     end
 end

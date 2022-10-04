@@ -1,62 +1,56 @@
-            <%= render partial: "shared/header"%>
-<div class="card-header"><h3 class="text-center font-weight-light my-4">Create Account</h3></div>
-                                    <div class="card-body">
-            <%= form_with model: @blogger, url: register_path do |form|%>
-            <% if @blogger.errors.any?%>
-            <div class="alert alert-danger">
-            <% @blogger.errors.full_messages.each do |message|%> 
-            <div><%= message %></div>
-            <% end %>
-            </div>
-            <% end %>
-                    <div class="row mb-3">
-                    <div class="col-md-6">
-                        <div class="form-floating mb-3 mb-md-0">
-                            <%= form.text_field :first_name, class: "form-control", id: "inputFirstName", type: "text", placeholder: "Enter your first name" %>
-                            <%= form.label :first_name %>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-floating">
-                            <%= form.text_field :last_name, class: "form-control", id: "inputLastName", type: "text", placeholder: "Enter your last name" %>
-                            <%= form.label :last_name %>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-floating mb-3">
-                    <%=form.text_field :email, class: "form-control", id: "inputEmail", type:"email", placeholder: "name@example.com" %>
-                    <%= form.label :email %>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <div class="form-floating mb-3 mb-md-0">
-                            <%= form.password_field :password, class:"form-control", id:"inputPassword", type: "password", placeholder: "Create a password" %>
-                            <%= form.label :password %>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-floating mb-3 mb-md-0">
-                            <%= form.password_field :confirm_password, class:"form-control", id:"inputPasswordConfirm", type: "password", placeholder:"Confirm password" %>
-                            <%= form.label :confirm_password %>
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-4 mb-0">
-                    <div class="d-grid">
-                    <%= form.submit "Create Account", class: "btn btn-primary btn-block"%>
-                    </div>
-                </div>
+<%= render partial: "shared/header"%>
 
+<%= form_with model: @blogger, url: register_path do |form|%>
+<% if @blogger.errors.any?%>
+<div class="alert alert-danger">
+<% @blogger.errors.full_messages.each do |message|%> 
+<div><%= message %></div>
+<% end %>
+</div>
+<% end %>
+<section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+         <h2 class="form-title">Sign up</h2>
+           
+                <div class="form-group">
+                <i class="zmdi zmdi-account material-icons-name"></i>
+                  <%= form.text_field :first_name, class: "form-control", id: "inputFirstName", type: "text", placeholder: "Enter your first name" %>
+                </div>
+                 <div class="form-group">
+                  <i class="zmdi zmdi-account material-icons-name"></i>
+                  <%= form.text_field :last_name, class: "form-control", id: "inputFirstName", type: "text", placeholder: "Enter your last name" %>
+                </div>
+                <div class="form-group">
+                   <i class="zmdi zmdi-email"></i>
+                     <%=form.text_field :email, class: "form-control", id: "inputEmail", type:"email", placeholder: "name@example.com" %>
+                </div>
+                <div class="form-group">
+                     <i class="zmdi zmdi-lock"> </i>
+                     <%= form.password_field :password, class:"form-control", id:"inputPassword", type: "password", placeholder: "Create a password" %>
+                </div>
+                <div class="form-group">
+                    <i class="zmdi zmdi-lock-outline"></i>
+                    <%= form.password_field :confirm_password, class:"form-control", id:"inputPasswordConfirm", type: "password", placeholder:"Confirm password" %>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                    <label for= "agree-term" class= "label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a>
+                </div>
+                <div class="form-group form-button">
+                    <%= form.submit "Create Account", class:"form-submit"%>
+                </div>
+            </form>
+        </div>
+        <div class="signup-image">
+            <figure><%= image_tag "signup-image.jpg" %></figure>
+            <a href="/userlogin" class="signup-image-link">I am already member</a>
+        </div>
+    </div>
+</div>
+</section>
 
-            <%end%>                      
-                                    </div>
-                                    <div class="card-footer text-center py-3">
-                                        <div class="small"><a href="/">Have an account? Go to login</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </main>
-            </div>
-           <%= render partial: "shared/footer"%>
+<%end%>                      
+                       
+

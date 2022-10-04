@@ -1,38 +1,51 @@
             <%= render partial: "shared/header"%>
-             <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
-                                    <div class="card-body">
+             
                 <%= form_with model: @blogger, url: userlogin_path do |form|%>
           <form>
-                                            <div class="form-floating mb-3">
-                                                <%= form.text_field :email, class: "form-control", id:"inputEmail", type:"email", placeholder:"name@example.com" %>
-                                                <%= form.label :email %>
-                                            </div>
-                                            <div class="form-floating mb-3">
-                                                <%= form.password_field :password, class:"form-control", id:"inputPassword", type:"password", placeholder:"Password" %>
-                                                <%= form.label :password %>
-                                            </div>
-                                            <div class="form-check mb-3">
-                                                <input class="form-check-input" id="inputRememberPassword" type="checkbox" value="" />
-                                                <label class="form-check-label" for="inputRememberPassword">Remember Password</label>
-                                            </div>
-                                            <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <a class="small" href="/resetpassword">Forgot Password?</a>
-                                                <%= form.submit "Login", class: "btn btn-primary" %>
-                                            </div>
-                                        </form>
-            <% end %>      
+            <section class="sign-in">
+            <div class="container">
+                <div class="signin-content">
+                    <div class="signin-image">
+                        <figure><%= image_tag "signin-image.jpg" %></figure>
+                        <a href="/register" class="signup-image-link">Create an account</a>
+                    </div>
 
+                    <div class="signin-form">
+                        <h2 class="form-title">Sign in</h2>
 
-
-
-                                    </div>
-                                    <div class="card-footer text-center py-3">
-                                        <div class="small"><a href="/register">Need an account? Sign up!</a></div>
-                                    </div>
-                                </div>
+                            <div class="form-group">
+                                <i class="zmdi zmdi-email"></i>
+                                <%=form.text_field :email, class: "form-control", id: "inputEmail", type:"email", placeholder: "name@example.com" %>
                             </div>
+                            <div class="form-group">
+                                <i class="zmdi zmdi-lock"> </i>
+                                <%= form.password_field :password, class:"form-control", id:"inputPassword", type: "password", placeholder: "Create a password" %>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
+                                <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
+                            </div>
+                             <div class="form-group form-button">
+                                 <%= form.submit "Login", class:"form-submit"%>
+                            </div>
+                        </form>
+                        <div class="social-login">
+                            <span class="social-label">Or login with</span>
+                            <ul class="socials">
+                                
+                                <li><a href="#"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
+                            </ul>
                         </div>
                     </div>
-                </main>
+                </div>
             </div>
-            <%= render partial: "shared/footer"%>
+        </section>
+
+            <% end %>      
+    
+
+
+
+
+
+            

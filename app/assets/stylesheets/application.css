@@ -4811,6 +4811,7 @@ textarea.form-control-lg {
 }
 
 .pagination, .dataTable-pagination ul {
+  
   display: flex;
   padding-left: 0;
   list-style: none;

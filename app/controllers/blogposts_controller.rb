@@ -1,12 +1,13 @@
 class BlogpostsController < ApplicationController
 
 
-  before_action :require_blogger_logged_in!
+  # before_action :require_blogger_logged_in!
 
     def index
-      @blogposts = Blogpost.all
+      @blogposts=Blogpost.all
+      @blogposts = Blogpost.order(:id).page(params[:page]).per(6)
       @comment = Comment.new
-
+      	
       if params[:search_key]
         @blogposts = Blogpost.where("title LIKE ? OR description LIKE ? ", 
         "%#{params[:search_key]}%", "%#{params[:search_key]}%")
@@ -19,7 +20,10 @@ class BlogpostsController < ApplicationController
       @blogpost=Blogpost.new
     end
 
-    
+    def show
+      @blogpost = Blogpost.find(params[:id])
+      @blogposts = Blogpost.order("name").page(params[:page]) 
+    end
     
       def create
         @blogger = Blogger.find(session[:blogger_id])
@@ -27,14 +31,14 @@ class BlogpostsController < ApplicationController
        @blogpost = @blogger.blogposts.create(blogpost_params)
        
         if @blogpost.save
-          redirect_to root_path, notice: "Blogpost post added successfully!"
+          redirect_to blogposts_path, notice: "Blogpost post added successfully!"
         else
           render :new, status: :unprocessable_entity
         end
       end
 
       def edit
-       
+
         @blogpost = Blogpost.find(params[:id])
 
       end
@@ -44,7 +48,7 @@ class BlogpostsController < ApplicationController
         @blogpost = Blogpost.find(params[:id])
     
         if @blogpost.update(blogpost_params)
-          redirect_to root_path
+          redirect_to blogposts_path
         else
           render :edit, status: :unprocessable_entity
         end

@@ -41,7 +41,7 @@ class CommentsController < ApplicationController
   #  def blogpost_params
   #   params.require(:comment).permit(:body, :category, :description) 
   #  end
-   
+   before_action :require_blogger_logged_in!
   def create
     @blogpost = Blogpost.find(params[:blogpost_id])
     @comment = @blogpost.comments.create(comment_params)

@@ -1,5 +1,5 @@
-  <%= form_with url: blogpost_comments_path(post.id), method: :post do |form| %>
-  <%= form.hidden_field :blogpost_id, value: post.id %>
+  <%= form_with url: blogpost_comments_path(@blogpost.id), method: :post do |form| %>
+  <%= form.hidden_field :blogpost_id, value: @blogpost.id %>
   <p>
    <div class="mb-3 row">
     <label class="col-sm-2 col-form-label">Comment</label>

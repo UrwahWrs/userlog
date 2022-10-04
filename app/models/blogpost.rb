@@ -1,6 +1,6 @@
 class Blogpost < ApplicationRecord
  
-
+  paginates_per 6
   belongs_to :blogger, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_one_attached :image
