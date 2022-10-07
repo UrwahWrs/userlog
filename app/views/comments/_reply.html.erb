@@ -1,0 +1,22 @@
+ <ul class="children">
+    <li>
+    
+    <% comment.comments.where.not(parent_id: nil).where(:parent_id==:id).each do |c| %>
+        <article class="comment">
+            <header class="comment-author">
+                    <i class="fa fa-user" aria-hidden="true" ></i> 
+            </header>
+            <section class="comment-details">
+                <div class="author-name">
+                    <h5><a href="#"><%= Current.blogger.first_name%></a></h5>
+                        <p><%=c.created_at%></p>
+                </div>
+                <div class="comment-body">
+                        <p><%= c.body%></p>
+                </div>
+                
+            </section>
+        </article>
+        <%end%>
+    </li>
+</ul>

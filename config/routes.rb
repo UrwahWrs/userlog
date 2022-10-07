@@ -14,7 +14,11 @@ end
 
 # delete '/blogposts', to: 'blogposts#destroy'
 
-
+resources :blogposts, only: :index do
+  member do
+    post 'toggle_favorite', to: "blogposts#toggle_favorite"
+  end
+end
 
 
 get "/register", to: "register#new"

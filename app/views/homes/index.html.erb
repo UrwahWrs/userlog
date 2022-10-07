@@ -1,88 +1,44 @@
 <%= render partial: "shared/navbar"%>
- <section class="bg-text-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="bg-text">
-                            <h3>Classic BLOG Design</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="blog-post-area">
-            <div class="container">
-                <div class="row">
-                   
-                    <% @blogposts.each do |post| %>
-                        <% if post.status=='public'%>
-                          
-                            <div class="col-md-1">
-                            </div>
-                            <div class="col-md-3">
-                                <div class="single-post">
-                                    <%if post.image.attached?%>
-                                    <img class="img-fluid" src="<%= url_for(post.image)%>" />
-                                    <%end%>
-                                    <h3><%= link_to post.title, blogpost_path(post)%></a></h3>
-                                        <h5>Category : <%= post.category%></h5>
-                                    
-                                    <h4><span>Posted By: <span class="author-name"><%= post.blogger.first_name+" "+post.blogger.last_name%></span></span>
-                                    </h4>
-                                    <h4><span><%= post.updated_at%></span></h4>
+<%= render partial: "shared/carousel"%>
 
-                                    <%= link_to "Edit", edit_blogpost_path(post) , class: "btn btn-primary"%>
-                                    <%= link_to "Delete", blogpost_path(post), class: "btn btn-primary", data: {
-                                                turbo_method: :delete,
-                                                turbo_confirm: "Are you sure?"
-                                            } %> 
-                                    
-                                </div>
-                            </div>
+<section class="blog-post-area">
+    <div class="container">
+        <div class="row">
+            
+            <% @blogposts.reverse_each do |post| %>
+                <% if post.status=='public'%>
+                    
+                    <div class="col-md-1">
+                    </div>
+                    <div class="col-md-3">
+                        <div class="single-post">
+                            <%if post.image.attached?%>
+                            <img class="img-fluid" src="<%= url_for(post.image)%>" />
+                            <%end%>
+                            <h3><%= link_to post.title, blogpost_path(post)%></a></h3>
+                                <h5>Category : <%= post.category%></h5>
                             
-                                
-                          
-                        <%end%>
-                    <%end%>
-                
-                </div>
-            </div>
-            <div class="pagination">
-                <%= paginate @blogposts%>
-            </div>
-        </section>
+                            <h4><span>Posted By: <span class="author-name"><%= post.blogger.first_name+" "+post.blogger.last_name%></span></span>
+                            </h4>
+                            <h4><span><%= post.updated_at%></span></h4>
 
-        <footer class="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="footer-bg">
-                            <div class="row">
-                                <div class="col-md-9">
-                                    <div class="footer-menu">
-                                        <ul>
-                                            <li class="active"><a href="/">Home</a></li>
-                                          
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="footer-icon">
-                                        <p><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></p>
-                                    </div>
-                                </div>
-                            </div> .
+                            <%# <%= link_to "Edit", edit_blogpost_path(post) , class: "btn btn-primary"%>
+                            <%# <%= link_to "Delete", blogpost_path(post), class: "btn btn-primary", data: {
+                                        turbo_method: :delete,
+                                        turbo_confirm: "Are you sure?"
+                                    } %>  
+                            
                         </div>
                     </div>
-                </div>
-            </div>
-        </footer>
+                    
+                        
+                    
+                <%end%>
+            <%end%>
+        
+        </div>
     </div>
-    <script src="js/jquery-3.1.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/active.js"></script>
-</body>
-
-</html>
+    
+</section>
+<%==  pagy_bootstrap_nav(@pagy)%>
+<%= render partial: "shared/footer"%>

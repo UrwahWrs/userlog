@@ -1,128 +1,39 @@
 <%= render partial:"shared/navbar"%>
 
-        <section class="single-blog-area">
-            <div class="container">
-                <div class="row">
-                   <div class="col-md-12">
-                    <div class="border-top">
-                        <div class="col-md-12">
-                        <div class="blog-area">
-                            <div class="blog-area-part">
-                          
-                                <h2><%= @blogpost.title %></h2>
-                                <div class="for-style">
-                                    <p><span class="drop_caps"><%=@blogpost.description.first%></span><%=@blogpost.description%></p>
-                                </div>
-                               <img class="img-fluid" src="<%= url_for(@blogpost.image)%>" />
-                               
-                                
-                            </div>
-                            
-                            <div class="commententries">
-                                <h3>Comments</h3>
-
-                                <ul class="commentlist">
-                                    <li>
-                                    <% @blogpost.comments.each do |comment| %>
-                                        <article class="comment">
-                                            <header class="comment-author">
-                                              <i class="fa fa-user" aria-hidden="true" ></i> 
-                                            </header>
-                                            <section class="comment-details">
-                                                <div class="author-name">
-                                                    <h5><a href="#"><%= Current.blogger.first_name%></a></h5>
-                                                    <p><%=comment.created_at%></p>
-                                                </div>
-                                                <div class="comment-body">
-                                                    <p><%= comment.body%></p>
-                                                </div>
-                                                <div class="reply">
-                                                    <p><span><a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a>12</span><span><a href="#"><i class="fa fa-reply" aria-hidden="true"></i></a>7</span></p>
-                                                </div>
-                                            </section>
-                                        </article>
-                                    <%end%>
-                                        <ul class="children">
-                                            <li>
-                                                <article class="comment">
-                                                    <header class="comment-author">
-                                                        <img src="img/author-2.jpg" alt="">
-                                                    </header>
-                                                    <section class="comment-details">
-                                                        <div class="author-name">
-                                                            <h5><a href="#">Khalid Hasan Zibon</a></h5>
-                                                            <p>February 25 2017</p>
-                                                        </div>
-                                                        <div class="comment-body">
-                                                            <p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard </p>
-                                                        </div>
-                                                        <div class="reply">
-                                                            <p><span><a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a>12</span><span><a href="#"><i class="fa fa-reply" aria-hidden="true"></i></a>7</span></p>
-                                                        </div>
-                                                    </section>
-                                                </article>
-                                            </li>
-                                        </ul>
-
-                                    </li>
-                                    
-                               
-
-                            </div>
-                            <%= render partial: 'comments/form'%>
-                        </div>
-                    </div>
+<section class="single-blog-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+            <div class="border-top">
+                <div class="col-md-12">
+                <div class="blog-area">
+                    <div class="blog-area-part">
                     
-                    </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <footer class="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="footer-bg">
-                            <div class="row">
-                                <div class="col-md-9">
-                                    <div class="footer-menu">
-                                        <ul>
-                                            <li class="active"><a href="#">Home</a></li>
-                                            <li><a href="#">lifestyle</a></li>
-                                            <li><a href="#">Food</a></li>
-                                            <li><a href="#">Nature</a></li>
-                                            <li><a href="#">photography</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="footer-icon">
-                                        <p><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></p>
-                                    </div>
-                                </div>
-                            </div> .
+                        <h2><%= @blogpost.title %></h2>
+                        <img class="img-fluid" src="<%= url_for(@blogpost.image)%>" />
+                        <div class="for-style">
+                            <p><span class="drop_caps"><%=@blogpost.description.first%></span><%=@blogpost.description%></p>
                         </div>
+                        
+                        <%= social_share_button_tag(@blogpost.title) %>
+                        
                     </div>
+                    <% unless Current.blogger.nil?%>
+                    <%= render partial: "comments/comment"%>
+                    
+                    <%= render partial: 'comments/form', locals: {parent_id: nil}%>
                 </div>
+            <%end%>
             </div>
-        </footer>
+            
+            </div>
+            </div>
+        </div>
     </div>
-    <script src="js/jquery-3.1.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/isotope.pkgd.js"></script>
-    <script src="js/active.js"></script>
-</body>
+</section>
 
-</html>
-
-
-
-
-
-
-
+<%= render partial: "shared/footer"%>
+       
 
 
 

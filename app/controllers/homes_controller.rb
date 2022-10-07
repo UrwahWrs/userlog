@@ -1,11 +1,16 @@
 class HomesController < ApplicationController
 
  def index
-   @blogpost=Blogpost.all
-   @blogposts = Blogpost.order(:id).page(params[:page]).per(6)
+  @pagy, @blogposts=pagy(Blogpost.all, items: 6)
    @comment = Comment.all
-  
- end
+
+    if params[:search] && params[:search] != ""
+    @blogposts = @blogposts.where("title LIKE ? OR category LIKE ?",
+        "%#{params[:search]}%", "%#{params[:search]}%")
+    else
+      @blogposts=Blogpost.all
+    end 
+  end
  
 
 end

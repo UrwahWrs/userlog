@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_30_070941) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_06_135015) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -78,11 +78,24 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_30_070941) do
     t.bigint "blogpost_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "parent_id"
     t.index ["blogpost_id"], name: "index_comments_on_blogpost_id"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.bigint "blogger_id", null: false
+    t.bigint "blogpost_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["blogger_id", "blogpost_id"], name: "index_likes_on_blogger_id_and_blogpost_id", unique: true
+    t.index ["blogger_id"], name: "index_likes_on_blogger_id"
+    t.index ["blogpost_id"], name: "index_likes_on_blogpost_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "blogposts", "bloggers"
   add_foreign_key "comments", "blogposts"
+  add_foreign_key "likes", "bloggers"
+  add_foreign_key "likes", "blogposts"
 end

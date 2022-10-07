@@ -350,13 +350,14 @@ section.blog-post-area h4 span.author-name {
 }
 
 .single-blog-area h2 {
-    color: #010101;
+    color: #353535;
     font-family: Geometria;
     font-size: 38px;
     font-weight: 500;
     margin-bottom: 60px;
     margin-top: 45px;
-}
+    margin-left: 312px;
+  }
 
 .single-blog-area p {
     font-family: Geometria;
@@ -446,8 +447,9 @@ section.blog-post-area h4 span.author-name {
 }
 
 .single-blog-area img {
-    width: 100%
-}
+    width: 45%;
+    margin-left: 316px;
+  }
 
 .single-blog-area .blog-area {
     margin-right: 40px;

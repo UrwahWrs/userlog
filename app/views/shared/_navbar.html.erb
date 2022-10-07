@@ -42,7 +42,13 @@
                         <div class="menu">
                   
                             <ul>
+                                <% if Current.blogger.nil?%>
+
                                 <li> <%= link_to "Home", root_path, class: "active" %></li>
+                                <%else%>
+                                <li> <%= link_to "Home", blogposts_path, class: "active" %></li>
+
+                                <%end%>
                                <% unless Current.blogger.nil?%>
                                   <li>
                                     <%= link_to "New Post",  new_blogpost_path %>
@@ -50,11 +56,11 @@
                                 
                                 <% end %>
                                 <li>
-                                  <form action="<%= blogposts_path %>" class="d-flex" role="search">
-                                    <input class="form-control me-2" type="search" name="search_key" placeholder="Search Blog" aria-label="Search">
-                                    <button class="btn btn-outline-info" type="submit"><i class="fa fa-search" aria-hidden="true"></i>
-</button>
-                                  </form>
+                                <% if Current.blogger.nil?%>
+                                 <%= render partial: "shared/homeSearch"%>
+                                 <%else%>
+                                 <%= render partial: "shared/search"%>
+                                 <%end%>
                                 </li>
 
                                 <% if Current.blogger %>
