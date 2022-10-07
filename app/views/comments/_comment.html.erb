@@ -18,19 +18,19 @@
                         <p><%= comment.body%></p>
                     </div>
                     <div class="reply">
-                        <p><span><a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a>12</span><span><a href="#"><i class="fa fa-reply" aria-hidden="true"></i></a>7</span></p>
+                        <p> <%= link_to 'reply', new_blogpost_comment_path(@blogpost, parent_id: comment.id), remote: true, class: 'd-block' %></p>
                             <div class="form-comment">
-                        <%= render partial: 'comments/form'%>
+
+                       
                     </div>
                     </div>
                     
                 </section>
             </article>
-        
-            <%# <%= render partial: "comments/reply"%>
+              <%# <%= render partial: "comments/reply"%> 
         <%end%>
         </li>
-        
+    </ul>    
     
 
 </div>

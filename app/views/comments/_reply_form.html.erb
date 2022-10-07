@@ -1,0 +1,21 @@
+  <%= form_with(model: [@blogpost, @comment]) do |form| %>
+   <%= f.hidden_field :parent_id %>
+  <p>
+   <div class="mb-3 row">
+    <div class="col-sm-10">
+        <%= f.label 'Reply' %>
+        <%= f.text_area :body,  class: "form-control" %>
+    </div>
+  </div>
+    
+  </p>
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <div class="d-grid">
+  
+      <%= f.submit "Post Reply", class: "btn btn-secondary"%>
+    </div>
+  </div>
+
+
+
+<% end %>

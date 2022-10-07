@@ -67,11 +67,11 @@
                                   <li class="nav-item">
                                   
                                   <a class="btn" href="<%= resetpassword_path %>"> <i class="fa fa-user" aria-hidden="true" ></i></a>
-
+                                
+                                  <a class="LogoutButton"><%= button_to "logout", logout_path, method: :delete, class: "btn btn-info" %></a>
+                                 
                                   </li>
-                                  <li class="nav-item">
-                                  <%= button_to "logout", logout_path, method: :delete, class: "nav-link" %>
-                                  </li>
+                                  
                                 <% else %>
                                   <li>
                                   <%= link_to "Sign Up", register_path%>  <%= link_to "Login", userlogin_path %>

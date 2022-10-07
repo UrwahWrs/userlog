@@ -2,23 +2,23 @@ class BlogpostsController < ApplicationController
 
 
   # before_action :require_blogger_logged_in!
-  # before_action :authenticate_user!, only: :toggle_favorite 
-
-  def toggle_favorite
-    @blogpost = Blogpost.find_by(id: params[:id])
-    current_blogger.favorited?(@blogpost) ? current_blogger.unfavorite(@blogpost) : current_blogger.favorite(@blogpost)
-  end
+  # def toggle_favorite
+  #   @blogpost = Blogpost.find_by(id: params[:id])
+  #   current_blogger.favorited?(@blogpost) ? current_blogger.unfavorite(@blogpost) : current_blogger.favorite(@blogpost)
+  # end
   
 
   def index
-    @pagy, @blogposts=pagy(Blogpost.all, items: 6)
+    if Current.blogger
+      @blogposts=Blogpost.where(blogger_id: Current.blogger.id).order(created_at: :desc).page(params[:page]).per(6)
+    else
+      @blogposts=Blogpost.order(created_at: :desc).active_blogs.page(params[:page]).per(6)
+    end
     @comment = Comment.new
 
     if params[:search] && params[:search] != ""
       @blogposts = @blogposts.where("title LIKE ? OR category LIKE ?",
         "%#{params[:search]}%", "%#{params[:search]}%")
-    else
-      @blogposts=Blogpost.all
     end    
     
   end
@@ -61,12 +61,10 @@ class BlogpostsController < ApplicationController
       end
     end
 
-    
     def destroy
-      debugger
       @blogpost = Blogpost.find(params[:id])
       if @blogpost.destroy
-      redirect_to @blogposts, status: :see_other
+      redirect_to blogposts_path, status: :see_other
       end
     end
 

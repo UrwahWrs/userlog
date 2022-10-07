@@ -40,5 +40,9 @@
     </div>
     
 </section>
-<%==  pagy_bootstrap_nav(@pagy)%>
+ <div class="pegination">
+       
+        <%= paginate @blogposts%>
+  
+    </div>
 <%= render partial: "shared/footer"%>
