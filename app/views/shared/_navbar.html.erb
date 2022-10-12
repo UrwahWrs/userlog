@@ -28,25 +28,26 @@
     
 </head>
 
+  <%= javascript_include_tag "application" %>
+
 <body>
     <div class="wrapper">
         <header class="header">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-1">
                         <div class="logo">
                             <h2><a href="/">BLOGS</a></h2>
                         </div>
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-11">
                         <div class="menu">
                   
                             <ul>
-                                <% if Current.blogger.nil?%>
+                                <% unless Current.blogger.nil?%>
+                                <li> <%= link_to "My Posts", myposts_path, class: "active" %></li>
+                                <li> <%= link_to "Liked : #{Current.blogger.favorites.count}", mylikedposts_path, class: "active" %></li>
 
-                                <li> <%= link_to "Home", root_path, class: "active" %></li>
-                                <%else%>
-                                <li> <%= link_to "Home", blogposts_path, class: "active" %></li>
 
                                 <%end%>
                                <% unless Current.blogger.nil?%>
@@ -56,11 +57,9 @@
                                 
                                 <% end %>
                                 <li>
-                                <% if Current.blogger.nil?%>
-                                 <%= render partial: "shared/homeSearch"%>
-                                 <%else%>
+                                
                                  <%= render partial: "shared/search"%>
-                                 <%end%>
+                               
                                 </li>
 
                                 <% if Current.blogger %>
@@ -68,7 +67,7 @@
                                   
                                   <a class="btn" href="<%= resetpassword_path %>"> <i class="fa fa-user" aria-hidden="true" ></i></a>
                                 
-                                  <a class="LogoutButton"><%= button_to "logout", logout_path, method: :delete, class: "btn btn-info" %></a>
+                                  <a class="LogoutButton"><%= button_to "logout", logout_path, method: :delete, class: "btn btn-light" %></a>
                                  
                                   </li>
                                   

@@ -3,6 +3,7 @@ class CommentsController < ApplicationController
    before_action :require_blogger_logged_in!
    
    def new
+   
     @blogpost = Blogpost.find(params[:blogpost_id])
     @comment = @blogpost.comments.new(parent_id: params[:parent_id])
   end

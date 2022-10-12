@@ -1,0 +1,63 @@
+<%= render partial: "shared/navbar"%>
+<%= render partial: "shared/carousel"%>
+<head> 
+  <%= javascript_include_tag "application" %>
+</head>
+
+ 
+<section class="blog-post-area">
+    <div class="container">
+    <div class="row">
+        
+        <% @blogposts.each do |post| %>
+        <% if post.blogger_id==Current.blogger.id%>
+        
+        <div class="col-md-1">
+        </div>
+
+        <div class="col-md-3">
+
+        <div class="single-post">
+
+            <%if post.image.attached?%>
+             <img class="img-fluid" src="<%= url_for(post.image)%>" />
+            <%end%>
+
+            <h3><%= link_to post.title, blogpost_path(post)%>
+            </h3>
+    
+            
+            <h5>Category : <%= post.category%></h5>
+            
+            <h4><span>Posted By: <span class="author-name"><%= post.blogger.first_name+" "+post.blogger.last_name%></span></span></h4>
+            <h4><span><%= post.updated_at%></span></h4>
+            <% if Current.blogger.id==post.blogger.id%>
+            <%= link_to "Edit", edit_blogpost_path(post) , class: "btn btn-primary"%>
+            
+            <%= link_to "Publish", edit_blogpost_path(post) , class: "btn btn-dark"%>
+            <a class="DelPost"><%= button_to "Delete", post, class: "btn btn-warning", method: :delete%></a>
+            
+            
+            
+                
+            
+            <%end%>
+
+        </div>
+
+        </div>
+        <%end%>
+        <%end%>
+    
+    </div>
+    </div>
+    <div class="pegination">
+       
+        <%= paginate @blogposts%>
+  
+    </div>
+</section>
+
+
+
+

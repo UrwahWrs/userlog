@@ -1,51 +1,86 @@
 <%= render partial: "shared/navbar"%>
 <%= render partial: "shared/carousel"%>
+
+
  
 <section class="blog-post-area">
-    <div class="container">
-    <div class="row">
-        
-        <% @blogposts.each do |post| %>
+<div class="container">
+<div class="row">
+    
+    <% @blogposts.each do |post| %>
+    <% if post.status=='public'%>
         <div class="col-md-1">
         </div>
 
-        <div class="col-md-3">
+    <div class="col-md-3">
 
-        <div class="single-post">
+    <div class="single-post">
 
-            <%if post.image.attached?%>
-             <img class="img-fluid" src="<%= url_for(post.image)%>" />
-            <%end%>
+        <%if post.image.attached?%>
+            <img class="img-fluid" src="<%= url_for(post.image)%>" />
+        <%end%>
 
-            <h3><%= link_to post.title, blogpost_path(post)%></a></h3>
-    
+        <div class="like">
+            <h3><%= link_to post.title, blogpost_path(post)%>
             
-            <h5>Category : <%= post.category%></h5>
-            
-            <h4><span>Posted By: <span class="author-name"><%= post.blogger.first_name+" "+post.blogger.last_name%></span></span></h4>
-            <h4><span><%= post.updated_at%></span></h4>
-            <% if Current.blogger%>
-            <%= link_to "Edit", edit_blogpost_path(post) , class: "btn btn-primary"%>
-            
-            <%= link_to "Publish", edit_blogpost_path(post) , class: "btn btn-dark"%>
-                <a class="DelPost"><%= button_to "Delete", post, class: "btn btn-warning", method: :delete%></a>
-            
-
-            <%end%>
-
+            </h3>
         </div>
+        
+        <h5>Category : <%= post.category%>
+        <%if Current.blogger%>
+        <% if post.blogger.id!=Current.blogger.id%>
+       
+          <%unless Current.blogger.favorites.find_by(id: post.id) %>
+          
+            <%= button_to   favorite_blogpost_path(post, blogger_id: Current.blogger.id, blogpost_id: post.id, type: "favorite"), method: :put, class:"btn btn-danger" do%>
+            <span class="glyphicon glyphicon-heart"></span>
+            <%end%>
+            <%else%>
 
-        </div>
+            <%= button_to   favorite_blogpost_path(post, blogger_id: Current.blogger.id, blogpost_id: post.id, type: "unfavorite"), method: :put, class:"btn btn-secondary" do%>
+            <span class="glyphicon glyphicon-thumbs-down"></span>
+            <%end%>
+            <%end%>
+        <%end%>
+        <%end%>
+        </h5>
+        
+        <h4><span>Posted By: <span class="author-name"><%= post.blogger.first_name+" "+post.blogger.last_name%></span></span></h4>
+        <h4><span><%= post.updated_at%></span></h4>
+
+        <% if  Current.blogger%>
+        <% if  post.blogger_id==Current.blogger.id%>
+        
+        <%= link_to "Edit", edit_blogpost_path(post) , class: "btn btn-primary"%>
+        
+        <%= link_to "Publish", edit_blogpost_path(post) , class: "btn btn-dark"%>
+        <a class="DelPost"><%= button_to "Delete", post, class: "btn btn-warning", method: :delete%></a>
+        
+        
+        
+            
+        <%end%>
+        
 
         <%end%>
+        
     
     </div>
+
     </div>
-    <div class="pegination">
-       
-        <%= paginate @blogposts%>
-  
-    </div>
+    <%end%>
+    <%end%>
+
+</div>
+</div>
+<div class="pegination">
+    
+    <%= paginate @blogposts%>
+
+</div>
 </section>
 
-<%= render partial: "shared/footer"%>
+
+
+
+
