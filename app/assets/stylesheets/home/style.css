@@ -30,7 +30,7 @@
 
 .wrapper header.header .logo {
 
-    margin-top: 28px;
+    margin-top: 20px;
 
 }
 
@@ -68,7 +68,8 @@
 .wrapper header.header .menu ul li {
     display: inline-block;
     list-style: outside none none;
-    margin: 1px -40px 0 0;
+    margin: 20px -10px 10px 0;
+
   }
 
 .wrapper header.header .menu ul li a {
@@ -100,7 +101,7 @@
 .wrapper section.bg-text-area .bg-text {
     background-image: url(img/bg-iamges.jpg);
     background-size: 100% 100%;
-    padding: 205px 280px;
+    padding: 80px 185px;
 }
 
 .wrapper section.bg-text-area .container {}

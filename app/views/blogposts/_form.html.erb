@@ -1,5 +1,18 @@
+<%= render partial: "shared/navbar"%>
+
 <%= form_with model: blogpost  do |form|%>
-    
+    <% if @blogpost.errors.any? %>
+    <div class="alert alert-danger">
+    <% @blogpost.errors.full_messages.each do |message|%>
+        <div>
+            <%= message%>
+        </div>
+    <%end%>
+    </div>
+    <%end%>
+
+  
+
 <section class="sign-in">
 
 <div class="container">
@@ -12,36 +25,38 @@
     <div class="signin-form">
         <h2 class="form-title">Add New Post</h2>
 
-        <div class="form-group">
-            <i>Title</i>
-            <%= form.text_field :title, class: "form-control", type: "text", placeholder: "Enter the title of the post" %>
+        <div class="form-group"> 
+            <i>Title</i>  <i class="required-fields"> *required</i>
+            <%= form.text_field :title, class: "form-control", type: "text", placeholder: "Enter the title of the post", required: true %>
         </div>
 
 
         <div class="form-group">
-            <i>Description</i>
-            <%=form.text_area :description, class: "form-control", type:"text", placeholder: "description" %>
+            <i>Description</i> <i class="required-fields"> *required</i>
+            <%=form.text_area :description, class: "form-control", type:"text", placeholder: "description", required: true  %>
         </div>
 
         <div class="form-group">
             
-            <%= form.file_field :image%>
+            <%= form.file_field :image, required: true %><i class="required-fields"> *required</i>
             
         </div>
 
         <div aria-label="Default select example">
         <div class='form-group'>
-            <span>Category</span>
-            <p><%= form.select :category, [ 'Cell', 'Work', 'Office', 'Home', 'Other' ],{},{include_blank: true, class: 'form-control' }%></p>
+            <i>Category</i>
+            <p><%= form.select :category, [ 'Food','Animals', 'Travelling', 'Books', 'Design', 'Fashion' ],{},{include_blank: true, class: 'form-control' }%></p>
         </div>
-        <div></div>
-            <%#= form.select :category, raw("<option>Category</option><option>Animals</option><option>Traveller</option><option>Books</option>"), class: 'form_input', id: 'unique_id' %>
-            <%=form.select :status, raw("<option>private</option><option>public</option>"), class: 'form_input', id: 'unique_id' %>
+        <div>
+        <i>Status</i>
+           
+            <%=form.select :status, [ 'private', 'public' ],{},{include_blank: true, class: 'form-control' } %>
         </div>
 
 
         <div class="form-group form-button">
             <%= form.submit "Add Post", class:"form-submit"%>
+            <%= link_to "Go Back", blogposts_path(:blogposts =>'all'), class:"form-submit"%>
         </div>
     
     </div>

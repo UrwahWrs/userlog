@@ -15,8 +15,6 @@
                             <p><span class="drop_caps"><%=@blogpost.description.first%></span><%=@blogpost.description%></p>
                         </div>
                         
-                        <%= social_share_button_tag(@blogpost.title) %>
-                        
                     </div>
                     <% unless Current.blogger.nil?%>
                     <%= render partial: "comments/comment"%>

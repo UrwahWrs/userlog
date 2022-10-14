@@ -10,6 +10,7 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+ @import "bootstrap";
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -63,17 +64,38 @@
   --bs-body-color: #212529;
   --bs-body-bg: #fff;
 }
-
+.required-fields {
+  font-size: 10px;
+  font-style: normal;
+  color: gray;
+  margin-left: 10px;
+}
 .pagination a, .pagination span.current, .pagination span.gap {
   float: left;
   padding: 0 14px;
   line-height: 38px;
   text-decoration: none;
-  background-color: rgb(189, 189, 189);
+  background-color: rgb(7, 7, 7);
   border: 1px solid #DDD;
   border-left-width: 0;
 }
 
+.logout-b {
+  align-content: center;
+  text-decoration: none;
+  margin-left: 96px;
+  background: white;
+  box-shadow: none;
+}
+.search-b {
+	margin-right: 20px;
+}
+.dropdown {
+  margin-right: 89px;
+}
+.nav-item a {
+  margin-right: 49px;
+}
 .pagination {
   border-left: 1px solid #ddd;
   
@@ -2537,8 +2559,7 @@ textarea.form-control-lg {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  -webkit-print-color-adjust: exact;
-          color-adjust: exact;
+  
 }
 .form-check-input[type=checkbox] {
   border-radius: 0.25em;

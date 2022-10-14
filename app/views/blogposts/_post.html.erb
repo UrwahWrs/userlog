@@ -1,0 +1,70 @@
+        <div class="col-md-1">
+        </div>
+        
+    <div class="col-md-3">
+
+    <div class="single-post">
+         
+        <%= link_to post do %>
+        <%= image_tag(post.image, class: 'img-fluid') if post.image.attached? %>
+        <% end %>
+        
+
+        <div class="like">
+            <h3><%= link_to post.title, blogpost_path(post)%>
+            
+            </h3>
+        </div>
+        
+        <h5>Category : <%= post.category%>
+
+
+        <%if Current.blogger%>
+        <% if post.blogger.id!=Current.blogger.id%>
+       
+            <%unless Current.blogger.favorites.find_by(id: post.id) %>
+            
+                <%= button_to   favorite_blogpost_path(post, blogger_id: Current.blogger.id, blogpost_id: post.id, type: "favorite"), method: :put, class:"btn btn-danger" do%>
+                    <span class="glyphicon glyphicon-heart"></span>
+                <%end%>
+
+                <%else%>
+
+                <%= button_to   favorite_blogpost_path(post, blogger_id: Current.blogger.id, blogpost_id: post.id, type: "unfavorite"), method: :put, class:"btn btn-secondary" do%>
+                    <span class="glyphicon glyphicon-thumbs-down"></span>
+                <%end%>
+                
+            <%end%>
+
+
+        <%end%>
+        <%end%>
+        </h5>
+        
+        <h4><span>Posted By: <span class="author-name"><%= post.blogger.first_name+" "+post.blogger.last_name%></span></span></h4>
+        <h4><span><%= post.updated_at%></span></h4>
+
+        <% if  Current.blogger%>
+        <% if  post.blogger_id==Current.blogger.id%>
+        
+            <%= link_to "Edit", edit_blogpost_path(post) , class: "btn btn-primary"%>
+            <%if post.status=="private"%>
+            <%= link_to "Publish", edit_blogpost_path(post) , class: "btn btn-dark"%>
+            <%else%>
+            <%= link_to "Unpublish", edit_blogpost_path(post) , class: "btn btn-dark"%>
+            <%end%>
+
+            <a class="DelPost"><%= button_to "Delete", post, class: "btn btn-warning", method: :delete%></a>
+        
+        
+        
+            
+        <%end%>
+        
+
+        <%end%>
+        
+    
+    </div>
+
+    </div>
