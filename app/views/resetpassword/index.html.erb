@@ -2,6 +2,13 @@
 <%= render partial: "shared/navbar"%>
 
 <%= form_with model: Current.blogger, url: resetpassword_path do |form|%>
+<% if form.object.errors.any?%>
+        <div class="alert alert-danger">
+        <% form.object.errors.full_messages.each do |message|%> 
+            <div><%= message %></div>
+        <% end %>
+        </div>
+    <% end %>
 
 <section class="sign-in">
 <div class="container">
@@ -16,7 +23,7 @@
 
             <div class="form-group">
                 <i class="zmdi zmdi-email"></i>
-                <%=form.text_field :email, class: "form-control", id: "inputEmail", type:"email", placeholder: "name@example.com", required: true  %>
+                <%=form.text_field :email, class: "form-control", id: "inputEmail", type:"email", placeholder: "name@example.com"  %>
             </div>
             <div class="form-group">
                 <i class="zmdi zmdi-lock"> </i>
@@ -24,7 +31,7 @@
             </div>
             <div class="form-group">
                 <i class="zmdi zmdi-lock"> </i>
-                <%= form.password_field :confirm_password, class:"form-control", id:"inputPassword", type: "password", placeholder: "Confirm the new password", required: true  %>
+                <%= form.password_field :password_confirmation, class:"form-control", id:"inputPassword", type: "password", placeholder: "Confirm the new password", required: true  %>
             </div>
         
             <div class="form-group form-button">

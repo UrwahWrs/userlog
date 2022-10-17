@@ -4,13 +4,9 @@ class ResetpasswordController < ApplicationController
 
     end
     def update
-        debugger
-        if params[:password => :confirm_password]
         Current.blogger.update(password_params)
         redirect_to blogposts_path, notice: "password updated!"
-        else 
-        redirect_to resetpassword_path, notice: "password and confirm_password don't match!"
-        end
+
     end
 
     private

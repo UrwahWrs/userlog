@@ -1,6 +1,7 @@
 <%= render partial: "shared/navbar"%>
 
 <%= form_with model: @blogger, url: register_path do |form|%>
+
     <% if @blogger.errors.any?%>
         <div class="alert alert-danger">
         <% @blogger.errors.full_messages.each do |message|%> 
@@ -35,7 +36,7 @@
         </div>
         <div class="form-group">
             <i class="zmdi zmdi-lock-outline"></i><i class="required-fields"> *required</i>
-            <%= form.password_field :confirm_password, class:"form-control", id:"inputPasswordConfirm", type: "password", placeholder:"Confirm password", required: true  %>
+            <%= form.password_field :password_confirmation, class:"form-control", id:"inputPasswordConfirm", type: "password", placeholder:"Confirm password", required: true  %>
         </div>
         <div class="form-group">
             <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
