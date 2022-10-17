@@ -36,9 +36,7 @@ gem "jbuilder"
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 gem "bcrypt", "~> 3.1.7"
 
-gem 'social-share-button', '~> 0.1.6'
 
-gem 'acts_as_favoritor'
 
 gem "kaminari"
 

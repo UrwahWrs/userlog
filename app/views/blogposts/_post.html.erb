@@ -51,7 +51,7 @@
             <%if post.status=="private"%>
             <%= link_to "Publish", edit_blogpost_path(post) , class: "btn btn-dark"%>
             <%else%>
-            <%= link_to "Unpublish", edit_blogpost_path(post) , class: "btn btn-dark"%>
+            <%= link_to "Unpublish", edit_blogpost_path(post) , class: "btn btn-danger"%>
             <%end%>
 
             <a class="DelPost"><%= button_to "Delete", post, class: "btn btn-warning", method: :delete%></a>

@@ -5,13 +5,17 @@ class RegisterController < ApplicationController
     end
 
    def create
+    if params[:password => :confirm_password]
     @blogger=Blogger.new(blogger_params)
-    if @blogger.save
-        session[:blogger_id]=@blogger.id
-        redirect_to blogposts_path, notice: "Account has been created successfully!"
+        if @blogger.save
+            session[:blogger_id]=@blogger.id
+            redirect_to blogposts_path, notice: "Account has been created successfully!"
+        else
+            render :new, status: :unprocessable_entity
+        end
     else
-        render :new, status: :unprocessable_entity
-     end
+        redirect_to register_path, notice: "Password and Confirm_Password don't match! "
+    end
    end
 
    private
